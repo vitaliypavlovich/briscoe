@@ -1,0 +1,18 @@
+{% load static %}
+
+
+{#<div class="card">#}
+{#  {% if product.image %}#}
+{#    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}">#}
+{#  {% else %}#}
+{#    <img src="{% static 'img/no-image.png' %}" class="card-img-top" alt="{{ product.title }}">#}
+{#  {% endif %}#}
+ <div class="card-body">
+   <h5 class="card-title">{{ car.title }}</h5>
+   <p class="card-text">Color: {{ car.color.title }}</p>
+   <p class="card-text">Price: {{ car.price }} BYN</p>
+   <p class="card-text">Price: {{ car.price_usd }} USD</p>
+   <p class="card-text">Category: {{ car.category }}</p>
+   <p class="card-text">Purchase: {% for purchase in car.purchases.all %} {{ purchase }} {% endfor %}</p>
+ </div>
+{#</div>#}
