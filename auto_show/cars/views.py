@@ -1,23 +1,20 @@
 import logging
 from django.core.cache import cache
 from django.shortcuts import render, redirect
-from cars.models import Car
+from cars.models import Car, CarModel
 from cars.forms import AddCarForm
 
 logger = logging.getLogger(__name__)
 
 
 def index(request):
-    cars = Car.objects.all()
+    cars_models = CarModel.objects.all()
     title = request.GET.get("title")
     if title is not None:
-        cars = cars.filter(title__icontains=title)
-    purchases__count = request.GET.get("purchases__count")
-    if purchases__count is not None:
-        cars = cars.filter(purchases__count=purchases__count)
+        cars_models = cars_models.filter(title__icontains=title)
 
-    response = render(request, "index.html", {"cars": cars})
-    cache.set(f"cars-view-{title}-{purchases__count}", response, 60 * 60)
+    response = render(request, "index.html", {"cars_models": cars_models})
+    cache.set(f"cars_models-view-{title}", response, 60 * 60)
     return response
 
 

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from cars.models import Car, Color, Wheel, Interior, Seat
+from cars.models import Car, Color, Wheel, Interior, Seat, CarModel
 from cars.models import Purchase
 
 
@@ -39,6 +39,14 @@ class CarAdmin(admin.ModelAdmin):
 
     def save_form(self, request, form, change):
         return super().save_form(request, form, change)
+
+
+@admin.register(CarModel)
+class CarModelAdmin(admin.ModelAdmin):
+    list_display = ("car", "title", "image", "created_at")
+    fields = ("car", "title", "image", "created_at")
+    readonly_fields = ("created_at",)
+    search_fields = ("title",)
 
 
 @admin.register(Color)

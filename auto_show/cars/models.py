@@ -15,9 +15,9 @@ class Car(models.Model):
     external_id = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to="cars/", blank=True, null=True)
-    price = models.DecimalField(default=Decimal("0"), decimal_places=4, max_digits=10)
+    price = models.DecimalField(default=Decimal("0"), decimal_places=2, max_digits=10)
     price_usd = models.DecimalField(
-        default=Decimal("0"), decimal_places=4, max_digits=10
+        default=Decimal("0"), decimal_places=2, max_digits=10
     )
     category = models.CharField(max_length=32, choices=CATEGORY_CHOICES, default="NEW")
     description = models.TextField(blank=True, null=True)
@@ -32,7 +32,8 @@ class CarModel(models.Model):
         "cars.Car", on_delete=models.CASCADE, related_name="models"
     )
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="cars/", blank=True, null=True)
+    price_usd = models.DecimalField(default=Decimal("0"), decimal_places=2, max_digits=10)
+    image = models.ImageField(upload_to="cars_models/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
 
@@ -41,7 +42,7 @@ class Color(models.Model):
         "cars.Car", on_delete=models.CASCADE, related_name="colors"
     )
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="cars/", blank=True, null=True)
+    image = models.ImageField(upload_to="colors/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
 
@@ -50,7 +51,7 @@ class Wheel(models.Model):
         "cars.Car", on_delete=models.CASCADE, related_name="wheels"
     )
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="cars/", blank=True, null=True)
+    image = models.ImageField(upload_to="wheels/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
 
@@ -59,7 +60,7 @@ class Interior(models.Model):
         "cars.Car", on_delete=models.CASCADE, related_name="interiors"
     )
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="cars/", blank=True, null=True)
+    image = models.ImageField(upload_to="interiors/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
 
@@ -68,7 +69,7 @@ class Seat(models.Model):
         "cars.Car", on_delete=models.CASCADE, related_name="seats"
     )
     title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="cars/", blank=True, null=True)
+    image = models.ImageField(upload_to="seats/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
 
@@ -79,9 +80,9 @@ class Purchase(models.Model):
     car = models.ForeignKey(
         "cars.Car", on_delete=models.CASCADE, related_name="purchases"
     )
-    price = models.DecimalField(default=Decimal("0"), decimal_places=4, max_digits=10)
+    price = models.DecimalField(default=Decimal("0"), decimal_places=2, max_digits=10)
     price_usd = models.DecimalField(
-        default=Decimal("0"), decimal_places=4, max_digits=10
+        default=Decimal("0"), decimal_places=2, max_digits=10
     )
     count = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
