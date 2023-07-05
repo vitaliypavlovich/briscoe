@@ -1,0 +1,14 @@
+{% load static %}
+
+
+<div class="card">
+  {% if carmodel.image %}
+    <img src="{{ carmodel.image.url }}" class="card-img-top" alt="{{ carmodel.title }}">
+  {% else %}
+    <img src="{% static 'img/no-image.png' %}" class="card-img-top" alt="{{ carmodel.title }}">
+  {% endif %}
+ <div class="card-body">
+   <h5 class="card-title">{{ carmodel.title }}</h5>
+   <p class="card-text"> От {{ car.price_usd }} USD</p>
+ </div>
+</div>

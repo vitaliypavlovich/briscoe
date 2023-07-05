@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Cars{% endblock %}
+{% block title %}Cars models{% endblock %}
 
 {% block content %}
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000">Cars</a>
+    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000">Cars models</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="http://127.0.0.1:8000/add_car/">Add car</a>
@@ -21,14 +21,14 @@
   </li>
 </ul>
 <div class="container">
-  <h1>Cars</h1>
+  <h1>Cars models</h1>
   <div class="row">
-  {% for car in cars %}
+  {% for carmodel in cars_models %}
     {% if forloop.counter0|divisibleby:4 %}
       </div><div class="row mb-3">
     {% endif %}
     <div class="col-3">
-      {% include "car.html" %}
+      {% include "car_model.html" %}
     </div>
   {% endfor %}
     </div>
