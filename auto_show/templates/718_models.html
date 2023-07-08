@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}718 models{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h1>718 models</h1>
+  <div class="row">
+  {% for car in cars %}
+    {% if forloop.counter0|divisibleby:4 %}
+      </div><div class="row mb-3">
+    {% endif %}
+    <div class="col-3">
+      {% include "car_view.html" %}
+    </div>
+  {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
