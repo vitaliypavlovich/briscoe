@@ -24,11 +24,11 @@
   <h1>Cars models</h1>
   <div class="row">
   {% for carmodel in cars_models %}
-    {% if forloop.counter0|divisibleby:4 %}
+    {% if forloop.counter0|divisibleby:3 %}
       </div><div class="row mb-3">
     {% endif %}
-    <div class="col-3">
-      {% include "car_model.html" %}
+    <div class="col-4">
+      {% include "car_model_view.html" %}
     </div>
   {% endfor %}
     </div>
