@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+<div class="card">
+  {% if car.image %}
+    <img src="{{ car.image.url }}" class="card-img-top" alt="{{ car.title }}">
+  {% else %}
+    <img src="{% static 'img/no-image.png' %}" class="card-img-top" alt="{{ car.title }}">
+  {% endif %}
+ <div class="card-body">
+   <h5 class="card-title">
+     <a href="{% url 'car_details' car.id %}">{{car.title}}</a>
+   </h5>
+   <p class="card-text">Color: {{ car.color.title }}</p>
+   <p class="card-text">Price: {{ car.price }} BYN</p>
+   <p class="card-text">Price: {{ car.price_usd }} USD</p>
+   <p class="card-text">Category: {{ car.category }}</p>
+ </div>
+</div>
+</div>
+{% endblock %}

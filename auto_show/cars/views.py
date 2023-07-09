@@ -1,6 +1,6 @@
 import logging
 from django.core.cache import cache
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from cars.models import Car, CarModel
 from cars.forms import AddCarForm
 from django.db.models import Q
@@ -14,6 +14,11 @@ def car_models(request):
     response = render(request, "car_models.html", {"cars_models": cars_models})
     cache.set(f"cars_models-view-{cars_models}", response, 60 * 60)
     return response
+
+
+def car_details(request, car_id):
+    car = get_object_or_404(Car, id=car_id)
+    return render(request, "car_details.html", {"car": car})
 
 
 def taycan_models(request):
@@ -56,6 +61,21 @@ def cayenne_models(request):
     response = render(request, "cayenne_models.html", {"cars": cars})
     cache.set(f"cars-view-{cars}", response, 60 * 60)
     return response
+
+
+def car_models_details(request, carmodel_title):
+    if carmodel_title == "911":
+        return nine_hundred_eleven_models(request)
+    elif carmodel_title == "718":
+        return seven_hundred_eighteen_models(request)
+    elif carmodel_title == "Taycan":
+        return taycan_models(request)
+    elif carmodel_title == "Panamera":
+        return panamera_models(request)
+    elif carmodel_title == "Macan":
+        return macan_models(request)
+    else:
+        return cayenne_models(request)
 
 
 def add_car(request):

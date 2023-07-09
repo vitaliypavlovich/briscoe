@@ -17,8 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from auto_show import settings
-from cars.views import add_car, car_models, taycan_models, nine_hundred_eleven_models, seven_hundred_eighteen_models, \
-    panamera_models, macan_models, cayenne_models
+from cars.views import add_car, car_models, car_models_details, car_details
 from profiles.views import profiles, register_user, register_profile, login_view, logout_view
 
 urlpatterns = [
@@ -28,12 +27,8 @@ urlpatterns = [
     path("register_profile/", register_profile, name="register_profile"),
     path("add_car/", add_car, name="add_car"),
     path("", car_models, name="index"),
-    path("taycan_models", taycan_models, name="taycan_models"),
-    path("911_models", nine_hundred_eleven_models, name="nine_hundred_eleven_models"),
-    path("718_models", seven_hundred_eighteen_models, name="seven_hundred_eighteen_models"),
-    path("panamera_models", panamera_models, name="panamera_models"),
-    path("macan_models", macan_models, name="macan_models"),
-    path("cayenne_models", cayenne_models, name="cayenne_models"),
+    path("car_details/<int:car_id>/", car_details, name="car_details"),
+    path("car_models_details/<carmodel_title>/", car_models_details, name="car_models_details"),
     path("login/", login_view, name="login"),
     path("logout/", logout_view, name="logout"),
 ]
