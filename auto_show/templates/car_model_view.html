@@ -8,7 +8,9 @@
     <img src="{% static 'img/no-image.png' %}" class="card-img-top" alt="{{ carmodel.title }}">
   {% endif %}
  <div class="card-body">
-   <h5 class="card-title">{{ carmodel.title }}</h5>
+   <h5 class="card-title">
+     <a href="{% url 'car_models_details' carmodel.title %}">{{carmodel.title}}</a>
+   </h5>
    <p class="card-text"> От {{ carmodel.car.price_usd }} USD</p>
  </div>
 </div>
