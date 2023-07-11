@@ -51,39 +51,39 @@ class CarModelAdmin(admin.ModelAdmin):
 
 @admin.register(Color)
 class ColorAdmin(admin.ModelAdmin):
-    list_display = ("car", "title", "image", "created_at")
-    fields = ("car", "title", "image", "created_at")
+    list_display = ("car", "title", "image", "price_usd", "created_at")
+    fields = ("car", "title", "image", "price_usd", "created_at")
     readonly_fields = ("created_at",)
-    search_fields = ("title",)
+    search_fields = ("title", "price_usd",)
 
 
 @admin.register(Wheel)
 class WheelAdmin(admin.ModelAdmin):
-    list_display = ("car", "title", "image", "created_at")
-    fields = ("car", "title", "image", "created_at")
+    list_display = ("car", "title", "image", "price_usd", "created_at")
+    fields = ("car", "title", "image", "price_usd", "created_at")
     readonly_fields = ("created_at",)
-    search_fields = ("title",)
+    search_fields = ("title", "price_usd",)
 
 
 @admin.register(Interior)
 class InteriorAdmin(admin.ModelAdmin):
-    list_display = ("car", "title", "image", "created_at")
-    fields = ("car", "title", "image", "created_at")
+    list_display = ("car", "title", "image", "price_usd", "created_at")
+    fields = ("car", "title", "image", "price_usd", "created_at")
     readonly_fields = ("created_at",)
-    search_fields = ("title",)
+    search_fields = ("title", "price_usd",)
 
 
 @admin.register(Seat)
 class SeatAdmin(admin.ModelAdmin):
-    list_display = ("car", "title", "image", "created_at")
-    fields = ("car", "title", "image", "created_at")
+    list_display = ("car", "title", "image", "price_usd", "created_at")
+    fields = ("car", "title", "image", "price_usd", "created_at")
     readonly_fields = ("created_at",)
-    search_fields = ("title",)
+    search_fields = ("title", "price_usd",)
 
 
 @admin.register(Purchase)
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ("user", "car", "price", "price_usd", "count", "created_at")
-    fields = ("user", "car", "price", "price_usd", "count", "created_at")
+    list_display = ("user", "car", "color", "wheel", "interior", "seat", "price", "price_usd", "count", "created_at")
+    fields = ("user", "car", "color", "wheel", "interior", "seat", "price", "price_usd", "count", "created_at")
     readonly_fields = ("created_at",)
     search_fields = ("user__email", "car__title")

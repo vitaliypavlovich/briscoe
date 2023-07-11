@@ -24,7 +24,7 @@ class Car(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
-        return f"Car: {self.title} - {self.price}"
+        return f"Car: {self.title} - {self.price_usd}"
 
 
 class CarModel(models.Model):
@@ -36,6 +36,9 @@ class CarModel(models.Model):
     image = models.ImageField(upload_to="cars_models/", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
+    def __str__(self):
+        return f"Car model: {self.title}"
+
 
 class Color(models.Model):
     car = models.ForeignKey(
@@ -43,7 +46,13 @@ class Color(models.Model):
     )
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to="colors/", blank=True, null=True)
+    price_usd = models.DecimalField(
+        default=Decimal("0"), decimal_places=2, max_digits=10
+    )
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    def __str__(self):
+        return f"Color: {self.title} - {self.price_usd}"
 
 
 class Wheel(models.Model):
@@ -52,7 +61,13 @@ class Wheel(models.Model):
     )
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to="wheels/", blank=True, null=True)
+    price_usd = models.DecimalField(
+        default=Decimal("0"), decimal_places=2, max_digits=10
+    )
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    def __str__(self):
+        return f"Wheels: {self.title} - {self.price_usd}"
 
 
 class Interior(models.Model):
@@ -61,7 +76,13 @@ class Interior(models.Model):
     )
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to="interiors/", blank=True, null=True)
+    price_usd = models.DecimalField(
+        default=Decimal("0"), decimal_places=2, max_digits=10
+    )
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    def __str__(self):
+        return f"Interior: {self.title} - {self.price_usd}"
 
 
 class Seat(models.Model):
@@ -70,7 +91,13 @@ class Seat(models.Model):
     )
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to="seats/", blank=True, null=True)
+    price_usd = models.DecimalField(
+        default=Decimal("0"), decimal_places=2, max_digits=10
+    )
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
+
+    def __str__(self):
+        return f"Seats: {self.title} - {self.price_usd}"
 
 
 class Purchase(models.Model):
@@ -79,6 +106,18 @@ class Purchase(models.Model):
     )
     car = models.ForeignKey(
         "cars.Car", on_delete=models.CASCADE, related_name="purchases"
+    )
+    color = models.ForeignKey(
+        "cars.Color", on_delete=models.CASCADE, related_name="purchases", blank=True, null=True
+    )
+    wheel = models.ForeignKey(
+        "cars.Wheel", on_delete=models.CASCADE, related_name="purchases", blank=True, null=True
+    )
+    interior = models.ForeignKey(
+        "cars.Interior", on_delete=models.CASCADE, related_name="purchases", blank=True, null=True
+    )
+    seat = models.ForeignKey(
+        "cars.Seat", on_delete=models.CASCADE, related_name="purchases", blank=True, null=True
     )
     price = models.DecimalField(default=Decimal("0"), decimal_places=2, max_digits=10)
     price_usd = models.DecimalField(
