@@ -13,10 +13,7 @@
    <h5 class="card-title">
      <a href="{% url 'car_details' car.id %}">{{car.title}}</a>
    </h5>
-   <p class="card-text">Color: {{ car.color.title }}</p>
-   <p class="card-text">Price: {{ car.price }} BYN</p>
-   <p class="card-text">Price: {{ car.price_usd }} USD</p>
-   <p class="card-text">Category: {{ car.category }}</p>
+   <p class="card-text">От {{ car.price_usd }} USD</p>
  </div>
 </div>
 </div>
